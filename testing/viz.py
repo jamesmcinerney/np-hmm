@@ -17,7 +17,7 @@ try:
 except ImportError:
     print 'no Basemap'
 import sys
-from testing.googlemaps import snippet
+#from testing.googlemaps import snippet
 
 #where to save animation images:
 ANIM_ROOT = '/media/8A8823BF8823A921/vb-ihmm-anim/'
