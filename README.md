@@ -9,9 +9,15 @@ Specify which sensors you want to use (any combination of multivariate Gaussian 
 
 ```python
 K = 10 #state truncation parameter
-gSensor = sensors.MVGaussianSensor(K,2) #to apply to 2 dimensional data X1
-dSensor = sensors.DiscreteSensor(K) #to apply to data X2
+gSensor = sensors.MVGaussianSensor(K,2) #to apply to 2 dimensional continuous data X1
+dSensor = sensors.DiscreteSensor(K) #to apply to discrete data X2
 exp_z,_,exp_a,Zmax = general_inf.infer(N,[X1,X2],K,[gSensor,dSensor])
 ```
 
 Returns hidden state assignments (exp_z), transition matrix (exp_a), and most likely state path using the Viterbi algorithm (Zmax).
+
+To see full example, run:
+
+```html
+testing/example.py
+``` 
