@@ -30,8 +30,14 @@ class Sensor(object):
         #given expected value of z, calculate the
         #variational parameters of each component (w.r.t. this sensor)
         raise Exception('not implemented')
+    
+    def save(self,filepath):
+        raise Exception('not implemented')
+    
+    def load(self,filepath):
+        raise Exception('not implemented')
         
-
+        
 class MVGaussianSensor(Sensor):  
     
     def __init__(self,K,XDim,hyp=None):
@@ -98,7 +104,27 @@ class MVGaussianSensor(Sensor):
         #print 'mvg',str(self)
         #sys.exit(0)
         #[no return value]
+
+    def save(self,filepath):
+        save(filepath+'_K',self._K)
+        save(filepath+'_NK',self._NK)
+        save(filepath+'_betak',self._betak)
+        save(filepath+'_m',self._m)
+        save(filepath+'_W',self._W)
+        save(filepath+'_xd',self._xd)
+        save(filepath+'_vk',self._vk)
+        print 'saved MVGSensor',filepath
         
+    def load(self,filepath):
+        self._K = load(filepath+'_K.npy')
+        self._NK = load(filepath+'_NK.npy')
+        self._betak = load(filepath+'_betak.npy')
+        self._m = load(filepath+'_m.npy')
+        self._W = load(filepath+'_W.npy')
+        self._xd = load(filepath+'_xd.npy')
+        self._vk = load(filepath+'_vk.npy')
+        print 'loaded MVGSensor',filepath
+
     
     def __str__(self):
         return 'means:\n%s\ncovs:\n%s\n'%(str(self._m),str(self.expC()))
